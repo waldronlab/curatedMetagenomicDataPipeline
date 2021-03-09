@@ -1,0 +1,31 @@
+Package: curatedMetagenomicDataPipeline
+Title: The Preprocessing Pipeline for curatedMetagenomicData
+Version: 0.0.0.9000
+Authors@R:
+    person(given = "Lucas",
+           family = "Schiffer",
+           role = c("aut", "cre"),
+           email = "schifferl@bu.edu",
+           comment = c(ORCID = "0000-0003-3628-0326"))
+Description:
+    The curatedMetagenomicData R/Bioconductor package requires preprocessing
+    of outputs from its high load pipeline that are not needed by users. The
+    curatedMetagenomicDataPipeline package contains these functions to avoid
+    their inclusion in the user facing curatedMetagenomicData package.
+License: Artistic-2.0
+Encoding: UTF-8
+LazyData: true
+Imports:
+    dplyr,
+    furrr,
+    future,
+    magrittr,
+    parallel,
+    purrr,
+    readr,
+    stringr,
+    tibble,
+    tidyr,
+    utils
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
