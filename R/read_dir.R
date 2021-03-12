@@ -55,8 +55,8 @@ read_dir <- function(dir_path) {
         purrr::set_names(nm = data_type) %>%
         purrr::map(~ purrr::set_names(.x, ~ base::basename(.x))) %>%
         purrr::map(~ purrr::set_names(.x, ~ stringr::str_remove(.x, ".tsv"))) %>%
-        purrr::map_at("relative_abundance", ~ purrr::imap(.x, ~ readr::read_tsv(.x, col_names = base::c("rowname", .y), col_types = "?-?-", comment = "#", progress = FALSE))) %>%
-        purrr::map_if(base::is.character, ~ purrr::imap(.x, ~ readr::read_tsv(.x, col_names = base::c("rowname", .y), col_types = "??", comment = "#", progress = FALSE))) %>%
+        purrr::map_at("relative_abundance", ~ purrr::imap(.x, ~ readr::read_tsv(.x, col_names = base::c("rowname", .y), col_types = "c-d-", comment = "#", progress = FALSE))) %>%
+        purrr::map_if(base::is.character, ~ purrr::imap(.x, ~ readr::read_tsv(.x, col_names = base::c("rowname", .y), col_types = "cd", comment = "#", progress = FALSE))) %>%
         purrr::flatten() %>%
         purrr::reduce(dplyr::full_join, by = "rowname") %>%
         tibble::column_to_rownames() %>%
