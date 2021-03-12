@@ -24,15 +24,12 @@
 #' @importFrom purrr imap
 #' @importFrom readr read_tsv
 #' @importFrom purrr map_if
-#' @importFrom purrr flatten
 #' @importFrom purrr reduce
 #' @importFrom dplyr full_join
 #' @importFrom tibble column_to_rownames
 #' @importFrom dplyr mutate
 #' @importFrom dplyr across
 #' @importFrom tidyr replace_na
-#' @importFrom Matrix as.matrix
-#' @importFrom purrr splice
 #' @importFrom methods as
 #' @importClassesFrom Matrix dgTMatrix
 read_dir <- function(dir_path) {
@@ -57,13 +54,10 @@ read_dir <- function(dir_path) {
         purrr::map(~ purrr::set_names(.x, ~ stringr::str_remove(.x, ".tsv"))) %>%
         purrr::map_at("relative_abundance", ~ purrr::imap(.x, ~ readr::read_tsv(.x, col_names = base::c("rowname", .y), col_types = "c-d-", comment = "#", progress = FALSE))) %>%
         purrr::map_if(base::is.character, ~ purrr::imap(.x, ~ readr::read_tsv(.x, col_names = base::c("rowname", .y), col_types = "cd", comment = "#", progress = FALSE))) %>%
-        purrr::flatten() %>%
-        purrr::reduce(dplyr::full_join, by = "rowname") %>%
-        tibble::column_to_rownames() %>%
-        dplyr::mutate(dplyr::across(.fns = ~ tidyr::replace_na(.x, 0))) %>%
-        Matrix::as.matrix() %>%
-        purrr::splice() %>%
-        purrr::set_names(nm = data_type) %>%
+        purrr::map(~ purrr::reduce(.x, dplyr::full_join, by = "rowname")) %>%
+        purrr::map(~ tibble::column_to_rownames(.x)) %>%
+        purrr::map(~ dplyr::mutate(.x, dplyr::across(.fns = ~ tidyr::replace_na(.x, 0)))) %>%
+        purrr::map(~ base::as.matrix(.x)) %>%
         purrr::map_at("gene_families", ~ methods::as(.x, "dgTMatrix")) %>%
         purrr::set_names(nm = aws_name)
 }
