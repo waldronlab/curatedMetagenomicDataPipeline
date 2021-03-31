@@ -14,6 +14,13 @@
 #' \code{\link[Matrix]{dgTMatrix-class}} matrix or a \code{\link[base]{matrix}}.
 #' @export
 #'
+#' @seealso [save_rda()]
+#'
+#' @examples \dontrun{
+#'
+#' read_dir("~/AsnicarF_2017/genefamilies_relab/")
+#' }
+#'
 #' @importFrom magrittr %>%
 #' @importFrom stringr str_replace
 #' @importFrom stringr str_c

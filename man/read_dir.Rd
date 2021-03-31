@@ -22,3 +22,13 @@ matrix will be returned if the directory is named \code{genefamilies_relab} and 
 case, the matrix will be returned as a named \code{\link[base]{list}} element
 with the correct name to be used when uploading to AWS S3.
 }
+\examples{
+\dontrun{
+
+read_dir("~/AsnicarF_2017/genefamilies_relab/")
+}
+
+}
+\seealso{
+\code{\link[=save_rda]{save_rda()}}
+}
