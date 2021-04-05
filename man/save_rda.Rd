@@ -21,7 +21,8 @@ piped to \code{save_rda} (and \code{dir_path} is provided), an \code{rda} file r
 uploaded to AWS S3 will be saved at the location specified. Here, \code{dir_path}
 should be the top-level directory (e.g. \verb{~/uploads/}) in which an organized
 directory structure will be created. That is, users should not provided a
-nested directory path, existing after the first run, to \code{dir_path}.
+nested directory path, existing after the first run of \code{save_rda}, to
+\code{dir_path}.
 }
 \examples{
 \dontrun{
@@ -32,5 +33,5 @@ read_dir("~/AsnicarF_2017/genefamilies_relab/") \%>\%
 
 }
 \seealso{
-\code{\link[=read_dir]{read_dir()}}
+\code{\link[=read_dir]{read_dir()}} \code{\link[=make_csv]{make_csv()}}
 }

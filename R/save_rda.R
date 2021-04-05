@@ -5,7 +5,8 @@
 #' uploaded to AWS S3 will be saved at the location specified. Here, `dir_path`
 #' should be the top-level directory (e.g. `~/uploads/`) in which an organized
 #' directory structure will be created. That is, users should not provided a
-#' nested directory path, existing after the first run, to `dir_path`.
+#' nested directory path, existing after the first run of `save_rda`, to
+#' `dir_path`.
 #'
 #' @param list_obj list object obtained from
 #' \code{\link[curatedMetagenomicDataPipeline]{read_dir}}
@@ -14,7 +15,7 @@
 #' @return the \code{\link[base]{NULL}} object will be returned invisibly
 #' @export
 #'
-#' @seealso [read_dir()]
+#' @seealso [read_dir()] [make_csv()]
 #'
 #' @examples \dontrun{
 #'
