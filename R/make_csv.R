@@ -60,7 +60,7 @@ make_csv <- function(dir_path) {
         base::as.character("FASTQ")
 
     SourceUrl <-
-        base::as.character(NA_character_)
+        base::as.character("https://www.ncbi.nlm.nih.gov/sra")
 
     SourceVersion <-
         base::as.character(NA_character_)
@@ -72,10 +72,10 @@ make_csv <- function(dir_path) {
         base::as.character(NA_character_)
 
     Coordinate_1_based <-
-        base::as.logical(NA)
+        base::as.logical(FALSE)
 
     DataProvider <-
-        base::as.character(NA_character_)
+        base::as.character("NCBI")
 
     Maintainer <-
         base::system.file("DESCRIPTION", package = "curatedMetagenomicDataPipeline") %>%
