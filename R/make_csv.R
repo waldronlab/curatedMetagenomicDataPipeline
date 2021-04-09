@@ -27,6 +27,7 @@
 #' @importFrom stringr str_remove
 #' @importFrom stringr str_replace
 #' @importFrom BiocManager version
+#' @importFrom stringr str_detect
 #' @importFrom stringr str_c
 #' @importFrom stringr str_replace_all
 #' @importFrom readr write_csv
@@ -84,7 +85,8 @@ make_csv <- function(dir_path) {
         stringr::str_remove(">")
 
     RDataClass <-
-        base::as.character("SummarizedExperiment")
+        stringr::str_detect(rda_path, "gene_families") %>%
+        base::ifelse("dgTMatrix", "matrix")
 
     DispatchClass <-
         base::as.character("Rda")
