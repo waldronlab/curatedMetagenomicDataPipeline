@@ -86,7 +86,7 @@ make_csv <- function(dir_path) {
 
     RDataClass <-
         stringr::str_detect(rda_path, "gene_families") %>%
-        base::ifelse("dgTMatrix", "matrix")
+        base::ifelse("dgCMatrix", "matrix")
 
     DispatchClass <-
         base::as.character("Rda")

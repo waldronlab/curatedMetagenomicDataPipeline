@@ -12,11 +12,11 @@ pipeline}
 }
 \value{
 A single-element named \code{\link[base]{list}} (see above) with a
-\code{\link[Matrix]{dgTMatrix-class}} matrix or a \code{\link[base]{matrix}}.
+\code{\link[Matrix]{dgCMatrix-class}} matrix or a \code{\link[base]{matrix}}.
 }
 \description{
 Given a directory of \code{tsv} files, \code{read_dir()} will read in each file and
-merge them into a single matrix. A \code{\link[Matrix]{dgTMatrix-class}}
+merge them into a single matrix. A \code{\link[Matrix]{dgCMatrix-class}}
 matrix will be returned if the directory is named \code{genefamilies_relab} and a
 \code{\link[base]{matrix}} will be returned in all other cases. In either
 case, the matrix will be returned as a named \code{\link[base]{list}} element

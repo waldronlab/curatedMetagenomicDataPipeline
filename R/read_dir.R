@@ -1,7 +1,7 @@
 #' read a directory of tsv files
 #'
 #' Given a directory of `tsv` files, `read_dir()` will read in each file and
-#' merge them into a single matrix. A \code{\link[Matrix]{dgTMatrix-class}}
+#' merge them into a single matrix. A \code{\link[Matrix]{dgCMatrix-class}}
 #' matrix will be returned if the directory is named `genefamilies_relab` and a
 #' \code{\link[base]{matrix}} will be returned in all other cases. In either
 #' case, the matrix will be returned as a named \code{\link[base]{list}} element
@@ -11,7 +11,7 @@
 #' pipeline
 #'
 #' @return A single-element named \code{\link[base]{list}} (see above) with a
-#' \code{\link[Matrix]{dgTMatrix-class}} matrix or a \code{\link[base]{matrix}}.
+#' \code{\link[Matrix]{dgCMatrix-class}} matrix or a \code{\link[base]{matrix}}.
 #' @export
 #'
 #' @seealso [save_rda()]
@@ -38,7 +38,7 @@
 #' @importFrom dplyr across
 #' @importFrom tidyr replace_na
 #' @importFrom methods as
-#' @importClassesFrom Matrix dgTMatrix
+#' @importClassesFrom Matrix dgCMatrix
 read_dir <- function(dir_path) {
     study_name <-
         base::dirname(dir_path) %>%
@@ -65,6 +65,6 @@ read_dir <- function(dir_path) {
         purrr::map(~ tibble::column_to_rownames(.x)) %>%
         purrr::map(~ dplyr::mutate(.x, dplyr::across(.fns = ~ tidyr::replace_na(.x, 0)))) %>%
         purrr::map(~ base::as.matrix(.x)) %>%
-        purrr::map_at("gene_families", ~ methods::as(.x, "dgTMatrix")) %>%
+        purrr::map_at("gene_families", ~ methods::as(.x, "dgCMatrix")) %>%
         purrr::set_names(nm = aws_name)
 }
